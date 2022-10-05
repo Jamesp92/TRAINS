@@ -1,0 +1,15 @@
+<h1>Slowcomtotive Train Systems</h1>
+
+<h3>Cities<h3>
+
+<% if @cities.any? %>
+  <ul>
+    <% @cities.each do |city| %>
+      <li><a href="/cities/<%= city.id %>"><%= city.name %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p> There are no cities to show. </p>
+<% end %>
+
+<a href="/cities/new">Add City...</a>

@@ -1,0 +1,13 @@
+<h1>Slowcomtotive Train Systems</h1>
+
+<h3>Available Trains<h3>
+
+<% if @trains.any? %>
+  <ul>
+    <% @trains.each do |train| %>
+      <li><a href="/trains/<%= train.id %>"><%= train.name %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p> there are no trains to show </p>
+<% end %>

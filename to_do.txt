@@ -1,2 +1,16 @@
-init app.rb
-back
+DONE init app.rb
+IN PROGRESS backend: city and train class
+IN PROGRESS routes for City and Train (CRUD)
+IN PROGRESS eat snax
+IN PROGRESS views for routes (trains, cities, trains/:id, etc)
+
+Tomorrow (WED):
+#update for city that adds both city and associated train into the 'stops' join table (with time)
+#trains for City
+
+#update for train that adds both train and assiciated city into the 'stops' join table (with time)
+#cities for Train
+
+**search method for stops table to show assicated stops by train or by city in an ordered time table**
+
+finish README.md
