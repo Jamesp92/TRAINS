@@ -24,5 +24,5 @@ class Train
     result = DB.exec("INSERT INTO trains (name) VALUES ('#{@name}'), (capacity) VALUES ('#{@capacity}') RETURNING id;")
     @id = result.first().fetch("id").to_i
   end
-end
 
+end

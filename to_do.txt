@@ -1,5 +1,5 @@
-DONE init app.rb
-IN PROGRESS backend: city and train class
+DONE init app.rb 
+IN POSTGRESS backend: city and train class
 IN PROGRESS routes for City and Train (CRUD)
 IN PROGRESS eat snax
 IN PROGRESS views for routes (trains, cities, trains/:id, etc)

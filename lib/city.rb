@@ -32,16 +32,29 @@ class City
   end
 
   def self.find(id)
-    cities = DB.exec("SELECT * FROM cities WHERE id = #{:id};")
-    binding.pry
+    cities = DB.exec("SELECT * FROM cities WHERE id = #{id};")
+    binding.pry                     #stops            
     name = cities.fetch("name")
     id = cities.fetch("id").to_i
     City.new({ name: name , id: id })
   end
 
-  def update(name)
-    @name = name
-    DB.exec("UPDATE cities SET name = '#{name}' WHERE id = #{@id};")
+  def update(attributes)
+    if (attributes.has_key?(:name)) && (attributes.fetch(:name) != nil)
+      @name = attributes.fetch(:name)
+      DB.exec("UPDATE cities SET name = '#{@name}' WHERE id = #{@id};")
+    end
+  end
+  
+
+  def join_city_to_train(attributes)
+    if (attributes.has_key?(:train_name) && (attributes.fetch(:train_name) != nil)
+      train_name = attributes.fetch(:train_name)
+      train = DB.exec("SELECT * FROM trains WHERE lower(name)='#{train_name.downcase}';").first
+      if train != nil
+        DB.exec("INSERT INTO stops (train_id, city_id) VALUES (#{train['id'].to_i}, #{@id});")
+      end                                                                         
+    end
   end
 
   def delete
@@ -49,6 +62,15 @@ class City
   end
 
   def trains 
-    Train.find_by_city(self.id)
+    trains = []
+    result = DB.exec("SELECT train_id FROM stops WHERE city_id = #{@id};")
+    result.each() do |result|
+      train_id = result.fetch("train_id").to_i()
+      train = DB.exec("SELECT * FROM stops WHERE id = #{train_id};")
+      name = train.first().fetch("name")
+      trains.push(Train.new({name: name, id: album_id}))
+    end
+    trains 
   end
+
 end
